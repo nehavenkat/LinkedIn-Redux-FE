@@ -4,6 +4,8 @@ import profileReducer from "../reducers/profileReducers";
 import thunk from "redux-thunk";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+//this.props.newsfeed.Newsfeed  to connect to map
+
 const initialState = {
   newsfeed: {
     Newsfeed: [],
