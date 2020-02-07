@@ -2,8 +2,9 @@ import React from "react";
 import Loader from "react-loader-spinner";
 import CurrentProfileHeader from "./CurrentProfileHeader";
 import CurrentExpirience from "./CurrentExpirience";
-import { Row, Col } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import AllUsersList from "./AllUsersList";
+import Experience from "./Experience";
 
 let loaderStyle = {
   position: "fixed",
@@ -59,11 +60,11 @@ class CurrentUserPage extends React.Component {
               />{" "}
             </>
           ) : (
-            this.state.expirience && (
+            this.state.profile.experiences && (
               <div className="mt-3 px-5 py-4" style={mainBoxStyle}>
                 {" "}
                 <h3 style={h3Style}>Experience</h3>
-                {this.state.expirience.map((u, i) => (
+                {this.state.profile.experiences.map((u, i) => (
                   <CurrentExpirience usExpData={u} key={i} />
                 ))}
               </div>
@@ -78,6 +79,10 @@ class CurrentUserPage extends React.Component {
               ))}
             </div>
           )}
+          <Container flex className="experiencecontainer">
+            {/* Experience Section */}
+            <Experience />
+          </Container>
         </Col>
       </Row>
     );
@@ -141,7 +146,7 @@ class CurrentUserPage extends React.Component {
     });
 
     let response = await fetch(
-      "http://localhost:3002/profiles" + this.props.match.params.userId,
+      "http://localhost:3002/profiles/" + this.props.match.params.userId,
       {
         method: "GET"
       }

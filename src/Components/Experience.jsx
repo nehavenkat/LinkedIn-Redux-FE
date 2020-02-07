@@ -70,12 +70,15 @@ class Experience extends React.Component {
     let username = "user16";
     let password = "c9WEUxMS294hN6fF";
     let token = btoa(username + ":" + password);
-    let response = await fetch("http://localhost:3002/experiences", {
-      method: "GET",
-      headers: {
-        Authorization: "Basic " + token
+    let response = await fetch(
+      "http://localhost:3002/experiences/byUser/" + this.props.userId,
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Basic " + token
+        }
       }
-    });
+    );
     let exp = await response.json();
     this.props.loadExperiences(exp);
     // this.setState({
