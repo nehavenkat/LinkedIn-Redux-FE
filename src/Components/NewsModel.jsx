@@ -38,9 +38,9 @@ class NewsModel extends React.Component {
     let username = "user21";
     let password = "2ruxa4MRJdUgg6cz";
     let token = btoa(username + ":" + password);
-    const url = "http://localhost:3002/posts/" + postId;
+    const url = "http://localhost:3002/posts/" + postId + "/picture";
     const body = new FormData();
-    body.append("post", this.state.selectedFile);
+    body.append("image", this.state.selectedFile);
     const request = new XMLHttpRequest();
     request.open("POST", url);
     request.setRequestHeader("Authorization", "Basic " + token);

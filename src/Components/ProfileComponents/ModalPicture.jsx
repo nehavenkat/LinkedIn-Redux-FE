@@ -54,7 +54,7 @@ class ModalPicture extends React.Component {
     let token = btoa(username + ":" + password);
     var formData = new FormData();
     console.log(this.state.file);
-    formData.append("profile", this.state.file);
+    formData.append("image", this.state.file);
     try {
       let response = await fetch(
         "http://localhost:3002/profiles/username/picture",

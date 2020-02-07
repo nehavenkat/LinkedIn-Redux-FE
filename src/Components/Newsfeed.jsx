@@ -83,7 +83,7 @@ class Newsfeed extends React.Component {
     this.props.loadNewsfeed(news);
     this.setState({
       //Newsfeed: this.props.Newsfeed(),
-      //newsfeed: news.reverse(),
+      newsfeed: news.reverse(),
       isLoading: false // after loading is finished it disappear's
     });
   };

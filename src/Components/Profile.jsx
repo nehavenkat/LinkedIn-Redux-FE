@@ -10,6 +10,7 @@ import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 class Profile extends React.Component {
   state = {
+    username: this.props.match.params.userId,
     profile: {},
     modalOpen: false,
     dropdownOpen: false
@@ -27,7 +28,8 @@ class Profile extends React.Component {
   };
 
   render() {
-    return (<>
+    return (
+      <>
         <Container fluid id="profilecontainer">
           <div>
             {this.state.profile && (
@@ -44,19 +46,19 @@ class Profile extends React.Component {
                   open={this.state.modalOpen}
                 />
               )}
-            </div> 
-              
+            </div>
+
             <FontAwesomeIcon
               onClick={this.setModal}
               className="fapenciltoeditform"
               icon={faPencilAlt}
             />
 
-          <BottomProfile />
+            <BottomProfile />
           </div>
         </Container>
 
-{/* Bio Section */}
+        {/* Bio Section */}
         {this.state.profile.bio ? (
           <>
             <Container flex className="aboutuscontainer">
@@ -70,43 +72,24 @@ class Profile extends React.Component {
         )}
 
         <Container flex className="experiencecontainer">
-
-{/* Experience Section */}
+          {/* Experience Section */}
           <Experience />
         </Container>
-      
-        </>);
-
+      </>
+    );
   }
-    componentDidUpdate = async(prevProps, prevState) => {
-        // if this.state.profile.image 
-        // this.fetchingNewPic()
-    }
-    
-    fetchingNewPic = async() => {
-        let username = "user16";
-        let password = "c9WEUxMS294hN6fF";
-        let token = btoa(username + ":" + password);
-        let response = await fetch(
-          "https://strive-school-testing-apis.herokuapp.com/api/profile/me",{
-            method: "GET",
-            headers: {
-              Authorization: "Basic " + token
-            }
-          }
-        );
-        let prof = await response.json();
-        this.setState({
-          profile: prof
-        });
-    }
+  componentDidUpdate = async (prevProps, prevState) => {
+    // if this.state.profile.image
+    // this.fetchingNewPic()
+  };
 
-  componentDidMount = async () => {
+  fetchingNewPic = async () => {
     let username = "user16";
     let password = "c9WEUxMS294hN6fF";
     let token = btoa(username + ":" + password);
     let response = await fetch(
-      "https://strive-school-testing-apis.herokuapp.com/api/profile/me",{
+      "http://localhost:3002/profiles/" + this.state.username + "/picture",
+      {
         method: "GET",
         headers: {
           Authorization: "Basic " + token
@@ -114,13 +97,30 @@ class Profile extends React.Component {
       }
     );
     let prof = await response.json();
+    this.setState({
+      profile: prof
+    });
+  };
+
+  componentDidMount = async () => {
+    // let username = "user16";
+    // let password = "c9WEUxMS294hN6fF";
+    // let token = btoa(username + ":" + password);
+    let response = await fetch(
+      "http://localhost:3002/profiles/" + this.state.username,
+      {
+        method: "GET"
+        // headers: {
+        //   Authorization: "Basic " + token
+        // }
+      }
+    );
+    let prof = await response.json();
     console.log(prof);
     this.setState({
       profile: prof
     });
-  }
+  };
 }
-
-
 
 export default Profile;
