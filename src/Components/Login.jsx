@@ -46,15 +46,22 @@ class Login extends Component {
     let usersToken = btoa(
       this.state.token.username + ":" + this.state.token.password
     );
-    let response = await fetch(
-      "https://striveschool.herokuapp.com/api/profile/me",
-      {
-        method: "GET",
-        headers: {
-          authorization: "Basic " + usersToken
-        }
+    // const response = await fetch("http://localhost:3300/user/login", {
+    //   body: JSON.stringify({
+    //     username,
+    //     password
+    //   }),
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   }
+    // });
+    let response = await fetch(" http://localhost:3300/user/login", {
+      method: "POST",
+      headers: {
+        authorization: "Basic " + usersToken
       }
-    );
+    });
     if (response.ok) {
       // this.props.history.push('/Profile')
       console.log("response ok");
@@ -80,7 +87,7 @@ class Login extends Component {
                 type="text"
                 name="email"
                 id="username"
-                placeholder="user420"
+                placeholder="username"
               />
             </Col>
           </Row>

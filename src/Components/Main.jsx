@@ -6,6 +6,8 @@ import Profile from "./Profile";
 import CurrentUserPage from "./CurrentUserPage";
 import Newsfeed from "./Newsfeed";
 import Translator from "./Translator";
+import Login from "./Login";
+import loginAuth from "./loginAuth";
 
 class Main extends React.Component {
   render() {
@@ -14,6 +16,7 @@ class Main extends React.Component {
         <Navigation />
         <Container className="parentcontainer">
           <Switch>
+            <Route path="/login" exact component={loginAuth} />
             <Route path="/Main" exact component={Translator} />
 
             <Route path="/Profile" exact component={Profile} />

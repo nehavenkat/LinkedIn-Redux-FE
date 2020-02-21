@@ -14,7 +14,8 @@ const initialState = {
   profile: {
     profile: {},
     experiences: []
-  }
+  },
+  userToken: undefined
 };
 
 const combinedReducers = combineReducers({
